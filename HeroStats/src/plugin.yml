@@ -1,0 +1,8 @@
+name:  HeroStats
+version:  0.1
+description: Statistiken fuer Herobrine.de
+author:  fregman
+website:  http://Herobrine.de
+
+main:  de.herobrine.fregman.Main
+
