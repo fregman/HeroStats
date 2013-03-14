@@ -74,7 +74,7 @@ public class MySQL {
       query = conn.createStatement();
 
       // Ergebnistabelle erzeugen und abholen.
-      String sql = "SELECT name FROM player WHERE name= ?";
+      String sql = "SELECT name FROM heroplayer WHERE name= ?";
       
       PreparedStatement ps = conn.prepareStatement(sql);
       // Erstes Fragezeichen durch "firstName" Parameter ersetzen
