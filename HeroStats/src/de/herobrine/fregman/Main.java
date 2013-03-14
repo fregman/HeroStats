@@ -12,13 +12,21 @@ public class Main extends JavaPlugin{
 	
 	public void onEnable() {
 		
-		getServer().getPluginManager().registerEvents(new HeroListener(this), this);
+		final MySQL sql = new MySQL();
+
+
 		
-		try {
-			SQLite sq = new SQLite();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		
+		
+		getServer().getPluginManager().registerEvents(new HeroListener(this, sql), this);
+		
+		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                  sql.setTimestamp();
+            }
+}, 0L, 200L);
 
 		
 	}
