@@ -19,13 +19,13 @@ public class MySQL {
   private static String dbPort = "3306";
  
   // Datenbankname
-  private static String database = "*******";
+  private static String database = "**********";
  
   // Datenbankuser
-  private static String dbUser = "********";
+  private static String dbUser = "***********";
  
   // Datenbankpasswort
-  private static String dbPassword = "**********";
+  private static String dbPassword = "***********";
  
    MySQL() {
     try {
@@ -88,7 +88,7 @@ public class MySQL {
       while (result.next()) {
     	  
     	  String username = result.getString("name");
-    	  System.out.println("User vorhanden: " + username);
+    	  System.out.println("[HeroStats]Spieler in Datenbank, wird geupdatet: " + username);
     	  succ = true;
  
       }
@@ -156,6 +156,7 @@ public boolean insertPlayer(String playerName, int i) {
        preparedStatement.setInt(2, i);
        // SQL ausführen.
        preparedStatement.executeUpdate();
+       System.out.println("[HeroStats]Spieler wurde der Datenbank hinzugefügt:" + playerName);
 	 
 	      }
 	     catch (SQLException e) {

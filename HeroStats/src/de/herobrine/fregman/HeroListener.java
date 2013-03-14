@@ -30,7 +30,6 @@ public class HeroListener implements Listener{
 		Player player = event.getPlayer();
 		String playerName = player.getName();
 		
-		System.out.println("Spieler " + playerName + " hat den Server betreten");
 		boolean bla = sql.checkName(playerName);
 		if (bla){
 			
@@ -52,7 +51,6 @@ public class HeroListener implements Listener{
 		Player player = event.getPlayer();
 		String playerName = player.getName();
 		
-		System.out.println("Spieler " + playerName + " hat den Server verlassen");
 		boolean bla = sql.checkName(playerName);
 		if (bla){
 			
