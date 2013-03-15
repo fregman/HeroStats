@@ -34,7 +34,6 @@ public class HeroListener implements Listener{
 		if (bla){
 			
 			sql.updatePlayer(playerName, 1);
-			
 		} else {
 			
 			sql.insertPlayer(playerName, 1);
