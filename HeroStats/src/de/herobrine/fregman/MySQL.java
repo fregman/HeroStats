@@ -6,9 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
  
 public class MySQL {
+	
+	
+
  
   private static Connection conn = null;
  
@@ -159,5 +166,55 @@ public class MySQL {
 	      e.printStackTrace();
 	    }
 	  }
-  }	  
+  }
+
+  public void checkList(Player[] player) {
+	  
+	  ArrayList <String> liste = new ArrayList<String>();
+	
+	  conn = getInstance();
+	  
+	  if(conn != null)
+	  {
+
+	    @SuppressWarnings("unused")
+		Statement query;
+	    try {
+	      query = conn.createStatement();
+
+	      String sql = "SELECT name FROM hero_player WHERE online = '1'";
+	      
+	      PreparedStatement ps = conn.prepareStatement(sql);
+
+
+	      ResultSet result = ps.executeQuery();
+	      
+	     while(result.next()){
+	    	 
+	    	 liste.add(result.getString("name"));	
+	    		
+	    	}
+	     int size = liste.size();
+	     
+	     for (Player playeron : player){
+	    	 
+	    	 for (int i = 0; i < size;i++ ){
+	    		 
+	    		 
+	    		 //zeugs einfügen
+	    		 
+	    	 }
+	    	
+	    	 
+	     }
+	      
+	      
+	    } catch (SQLException e) {
+	      e.printStackTrace();
+	    }
+	  }
+
+	
+	
+}	  
 }

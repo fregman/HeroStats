@@ -55,11 +55,7 @@ public class HeroListener implements Listener{
 			
 			sql.updatePlayer(playerName, 0);
 			
-		} else {
-			
-			sql.insertPlayer(playerName, 0);
-			
-		}
+		} 
 		
 		
     }

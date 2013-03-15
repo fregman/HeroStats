@@ -1,5 +1,7 @@
 package de.herobrine.fregman;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin{
@@ -15,6 +17,8 @@ public class Main extends JavaPlugin{
 		final MySQL sql = new MySQL();
 
 
+
+
 		
 
 		
@@ -27,6 +31,13 @@ public class Main extends JavaPlugin{
                   sql.setTimestamp();
             }
 }, 0L, 200L);
+		
+		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+            sql.checkList(getServer().getOnlinePlayers()); 
+            }
+}, 0L, 600L);
 
 		
 	}
