@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
  
@@ -19,15 +18,15 @@ public class MySQL {
  
   private static Connection conn = null;
  
-  private static String dbHost = "********";
+  private static String dbHost = "";
  
   private static String dbPort = "3306";
 
-  private static String database = "********";
+  private static String database = "";
 
-  private static String dbUser = "********";
+  private static String dbUser = "";
 
-  private static String dbPassword = "**********";
+  private static String dbPassword = "";
  
    MySQL() {
     try {
@@ -50,7 +49,7 @@ public class MySQL {
       new MySQL();
     return conn;
   }
- 
+ //prüft ob Spieler in der DB steht
   public boolean checkName(String name){
 	  
 	  boolean succ = false;
@@ -85,7 +84,7 @@ public class MySQL {
   }
   return succ;
  }
-
+ //Updateted den Onlinestatus
   public void updatePlayer(String playerName, int i) {
 	  
 	  conn = getInstance();
@@ -118,7 +117,7 @@ public class MySQL {
 	 
 	
 	}
-
+ //Fügt den Spieler in die DB ein
   public void insertPlayer(String playerName, int i) {
 	  
 	  conn = getInstance();
@@ -145,7 +144,7 @@ public class MySQL {
 	  }
 
 	 }
-
+ //Setzt den aktuellen Timestamp in der DB
   public void setTimestamp() {
 	
 
@@ -168,9 +167,15 @@ public class MySQL {
 	  }
   }
 
+ //Prüft ob Datenbankeinträge korrekt sind 
   public void checkList(Player[] player) {
 	  
 	  ArrayList <String> liste = new ArrayList<String>();
+	  for (Player playerOn: player) {
+		  
+		  liste.add(playerOn.getName());
+
+	  }
 	
 	  conn = getInstance();
 	  
@@ -191,23 +196,18 @@ public class MySQL {
 	      
 	     while(result.next()){
 	    	 
-	    	 liste.add(result.getString("name"));	
-	    		
-	    	}
-	     int size = liste.size();
-	     
-	     for (Player playeron : player){
-	    	 
-	    	 for (int i = 0; i < size;i++ ){
+	    	 if (!liste.contains(result.getString("name"))){
 	    		 
-	    		 
-	    		 //zeugs einfügen
+	    		 updatePlayer(result.getString("name"), 0);
+
 	    		 
 	    	 }
-	    	
 	    	 
-	     }
-	      
+
+	    		
+	    	}
+
+
 	      
 	    } catch (SQLException e) {
 	      e.printStackTrace();
